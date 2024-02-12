@@ -16,17 +16,17 @@ export default function SearchBar(props) {
   }, [props.onSearch, searchTerm]);
 
   return (
-    <Container maxWidth="md">
+    <Container>
       <TextField
         id="search"
         type="search"
         label="Search"
         value={searchTerm}
         onChange={handleChange}
-        sx={{ width: 600 }}
+        sx={{ width: 500 }}
         InputProps={{
           endAdornment: (
-            <InputAdornment position="end">
+            <InputAdornment>
               <SearchIcon onClick={search}/>
             </InputAdornment>
           ),

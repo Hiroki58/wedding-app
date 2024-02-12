@@ -22,8 +22,8 @@ const theme = createTheme({
 export default function Root() {
     return (
       <ThemeProvider theme={theme}>
-        <MenuBar />
-        <div id="detail" className="w-screen place-content-center">
+        <MenuBar className="top-0"/>
+        <div id="detail" className="w-screen place-content-center  overflow-y-scroll">
             <Outlet />
         </div>
       </ThemeProvider>
