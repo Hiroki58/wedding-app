@@ -23,7 +23,7 @@ export default function Root() {
     return (
       <ThemeProvider theme={theme}>
         <MenuBar />
-        <div id="detail" class="w-screen place-content-center">
+        <div id="detail" className="w-screen place-content-center">
             <Outlet />
         </div>
       </ThemeProvider>
