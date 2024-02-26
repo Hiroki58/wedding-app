@@ -7,13 +7,15 @@ import React, { useCallback } from "react";
 export default function SearchBar(props) {
   const [searchTerm, setSearchTerm] = useState("");
 
-  const handleChange = (event) => {
-    setSearchTerm(event.target.value);
-  };
-
   const search = useCallback(() => {
     props.onSearch(searchTerm);
   }, [props.onSearch, searchTerm]);
+
+  const handleChange = (event) => {
+    setSearchTerm(event.target.value);
+    props.onSearch(searchTerm);
+  };
+
 
   return (
     <Container>
@@ -23,7 +25,7 @@ export default function SearchBar(props) {
         label="Search"
         value={searchTerm}
         onChange={handleChange}
-        sx={{ width: 500 }}
+        sx={{ width: 400 }}
         InputProps={{
           endAdornment: (
             <InputAdornment>

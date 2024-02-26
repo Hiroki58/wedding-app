@@ -23,7 +23,7 @@ export default function Root() {
     return (
       <ThemeProvider theme={theme}>
         <MenuBar className="top-0"/>
-        <div id="detail" className="w-screen place-content-center  overflow-y-scroll">
+        <div id="detail" className="w-screen place-content-center  overflow-y-scroll overflow-x-hidden bg-white">
             <Outlet />
         </div>
       </ThemeProvider>
