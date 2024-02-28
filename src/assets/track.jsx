@@ -5,7 +5,8 @@ import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button'
+import Button from '@mui/material/Button';
+import Spotify from "../util/spotify";
 
 const Track = (props) => {
   const Item = styled(Paper)(({ theme }) => ({
@@ -19,6 +20,7 @@ const Track = (props) => {
   
   const addTrack = useCallback(
     (event) => {
+      Spotify.savePlaylist(props.track.uri);
       props.onAdd(props.track);
     },
     [props.onAdd, props.track]
@@ -32,12 +34,13 @@ const Track = (props) => {
   );
 
   const renderAction = () => {
-    if (props.isRemoval) {
-      return (
-        <Button className="Track-action" onClick={removeTrack} variant="contained" color="primary" style={{maxWidth: '30px', maxHeight: '30px', minWidth: '30px', minHeight: '30px'}}>
-          -
-        </Button>
-      );
+    if (props.playlistTracks.some((i) => i.id === props.track.id)){
+      return 
+      // (
+      //   <Button className="Track-action" onClick={removeTrack} variant="contained" color="primary" style={{maxWidth: '30px', maxHeight: '30px', minWidth: '30px', minHeight: '30px'}}>
+      //     -
+      //   </Button>
+      // );
     }
     return (
       <Button className="Track-action" onClick={addTrack} variant="contained" color="primary" style={{maxWidth: '30px', maxHeight: '30px', minWidth: '30px', minHeight: '30px'}}>

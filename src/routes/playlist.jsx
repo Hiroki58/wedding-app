@@ -17,7 +17,7 @@ export default function Playlist() {
                 <iframe style={{borderRadius: 12, width: '600px', height:'100%'}} src="https://open.spotify.com/embed/playlist/26wd56yxtnTqiTpA7jJo7Q?utm_source=generator" loading="lazy"></iframe>
             </div>  
             <div id="searchBox" style={{width:'600px', height:'80vh'}}>
-                <div  class="sticky top-0 backdrop-blur-xl">
+                <div  className="sticky top-0 backdrop-blur-xl">
                     <SearchBar onSearch={search}/>
                 </div>
                 <div id="searchResults">

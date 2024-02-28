@@ -1,5 +1,6 @@
 const clientId = '471f258f4db64f74ab912a269e2350d8'; // Insert client ID here.
 const redirectUri = 'http://localhost:5173/playlist'; // Have to add this to your accepted Spotify redirect URIs on the Spotify API.
+const playlistId = '26wd56yxtnTqiTpA7jJo7Q';
 let accessToken;
 
 const Spotify = {
@@ -46,8 +47,27 @@ const Spotify = {
     });
   },
 
-  savePlaylist(name, trackUris) {
-    if (!name || !trackUris.length) {
+  getPlaylist() {
+    const accessToken = Spotify.getAccessToken();
+    return fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`
+      }
+    }).then(response => {
+      return response.json();
+    }).then(jsonResponse => {
+      let playlistTracks = jsonResponse.items.map(item => ({
+        id: item.track.id,
+        name: item.track.name,
+        uri: item.track.uri
+      }))
+      console.log(playlistTracks)
+      return playlistTracks ?? []
+    });
+  },
+
+  savePlaylist(trackUris) {
+    if (!trackUris.length) {
       return;
     }
 
@@ -59,18 +79,10 @@ const Spotify = {
     ).then(response => response.json()
     ).then(jsonResponse => {
       userId = jsonResponse.id;
-      return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
+      return fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
         headers: headers,
         method: 'POST',
-        body: JSON.stringify({name: name})
-      }).then(response => response.json()
-      ).then(jsonResponse => {
-        const playlistId = jsonResponse.id;
-        return fetch(`https://api.spotify.com/v1/users/${userId}/playlists/${playlistId}/tracks`, {
-          headers: headers,
-          method: 'POST',
-          body: JSON.stringify({uris: trackUris})
-        });
+        body: JSON.stringify({uris: [trackUris], position: 0})
       });
     });
   }

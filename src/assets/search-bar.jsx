@@ -13,8 +13,15 @@ export default function SearchBar(props) {
 
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
-    props.onSearch(searchTerm);
+    // props.onSearch(searchTerm);
   };
+
+  const handleKeyDown = e => {
+    if (e.key === 'Enter') {
+      e.preventDefault()
+      search();
+    }
+  }
 
 
   return (
@@ -23,8 +30,10 @@ export default function SearchBar(props) {
         id="search"
         type="search"
         label="Search"
+        tabIndex={0}
         value={searchTerm}
         onChange={handleChange}
+        onKeyDown={handleKeyDown}
         sx={{ width: 400 }}
         InputProps={{
           endAdornment: (
