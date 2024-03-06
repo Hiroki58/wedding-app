@@ -16,16 +16,20 @@ import { useState } from "react";
 export default function Question() {
   const { register, handleSubmit } = useForm();
   const [result, setResult] = useState(false);
+  const [firstName, setFirstName] = useState("");
 
   const onSubmit = (data, e) => {
     console.log(data, e);
+    setFirstName(data.firstName);
     setResult(true);
   }
   const onError = (errors, e) => console.log(errors, e)
 
   return (
     <Container maxWidth="sm" sx={{ pt: 5, backgroundColor: "#FFEEFF" }}>
-      {result ? <AlertDialog title="Thank you for answering our questions." content="" /> : null}
+      {result ? <AlertDialog title={"Thank you " + firstName + " for answering our questions."} content={<Button color='secondary' href="/">
+        Back to main page
+      </Button>} /> : null}
       <AlertDialog title="Thank you for visiting our website." content="Please answer the following questions." />
       <Stack spacing={3}>
         <TextField
