@@ -1,5 +1,5 @@
-import * as React from 'react';
-import {useState} from 'react';
+import React from 'react';
+import { useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -16,13 +16,13 @@ import { Link } from 'react-router-dom';
 export default function menuBar() {
   const [anchorEl, setAnchorEl] = useState(null);
 
-const handleMenu = (event) => {
-  setAnchorEl(event.currentTarget);
-};
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
 
-const handleClose = () => {
-  setAnchorEl(null);
-};
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="sticky" color="primary" enableColorOnDark>
@@ -43,15 +43,15 @@ const handleClose = () => {
             </Button>
           </Typography>
           <Menu
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={handleClose}
-        >
-          <MenuItem onClick={handleClose}><Link to={`question`}>Please answer these questions</Link></MenuItem>
-          <MenuItem onClick={handleClose}><Link to={`about`}>About us</Link></MenuItem>
-          <MenuItem onClick={handleClose}><Link to={`playlist`}>Music playlist</Link></MenuItem>
-          <MenuItem onClick={handleClose}><Link to={`photo`}>Photo contest</Link></MenuItem>
-        </Menu>
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+          >
+            <MenuItem onClick={handleClose}><Link to={`question`}>Please answer these questions</Link></MenuItem>
+            <MenuItem onClick={handleClose}><Link to={`about`}>About us</Link></MenuItem>
+            <MenuItem onClick={handleClose}><Link to={`playlist`}>Music playlist</Link></MenuItem>
+            <MenuItem onClick={handleClose}><Link to={`photo`}>Photo contest</Link></MenuItem>
+          </Menu>
         </Toolbar>
       </AppBar>
     </Box>
