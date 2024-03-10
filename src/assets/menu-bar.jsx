@@ -47,10 +47,10 @@ export default function menuBar() {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem onClick={handleClose}><Link to={`question`}>Please answer these questions</Link></MenuItem>
-            <MenuItem onClick={handleClose}><Link to={`about`}>About us</Link></MenuItem>
-            <MenuItem onClick={handleClose}><Link to={`playlist`}>Music playlist</Link></MenuItem>
-            <MenuItem onClick={handleClose}><Link to={`photo`}>Photo contest</Link></MenuItem>
+            <Link to={`question`}><MenuItem onClick={handleClose}>Please answer these questions</MenuItem></Link>
+            <Link to={`about`}><MenuItem onClick={handleClose}>About us</MenuItem></Link>
+            <Link to={`playlist`}><MenuItem onClick={handleClose}>Music playlist</MenuItem></Link>
+            <Link to={`photo`}><MenuItem onClick={handleClose}>Photo contest</MenuItem></Link>
           </Menu>
         </Toolbar>
       </AppBar>

@@ -26,7 +26,7 @@ export default function Question() {
   const onError = (errors, e) => console.log(errors, e)
 
   return (
-    <Container maxWidth="sm" sx={{ pt: 5, backgroundColor: "#FFEEFF" }}>
+    <Container maxWidth="sm" sx={{ pt: 5}}>
       {result ? <AlertDialog title={"Thank you " + firstName + " for answering our questions."} content={<Button color='secondary' href="/">
         Back to main page
       </Button>} /> : null}
