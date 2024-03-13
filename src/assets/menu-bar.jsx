@@ -25,7 +25,7 @@ export default function menuBar() {
   };
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="sticky" color="primary" enableColorOnDark>
+      <AppBar position="sticky" color="secondary" enableColorOnDark>
         <Toolbar>
           <IconButton
             size="large"

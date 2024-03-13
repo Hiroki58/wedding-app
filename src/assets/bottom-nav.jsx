@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import UploadIcon from '@mui/icons-material/Upload';
+import Uploader from "./uploader"
 import RefreshIcon from '@mui/icons-material/Refresh';
 
 export default function SimpleBottomNavigation() {
@@ -17,8 +17,8 @@ export default function SimpleBottomNavigation() {
             //     setValue(newValue);
             // }}
             >
-                <BottomNavigationAction label="Refresh" icon={<RefreshIcon />} onClick={() => window.location.reload(false)} />
-                <BottomNavigationAction label="Upload" icon={<UploadIcon />} />
+                <BottomNavigationAction icon={<RefreshIcon />} onClick={() => window.location.reload(false)} />
+                <Uploader />
             </BottomNavigation>
         </Box>
     );
