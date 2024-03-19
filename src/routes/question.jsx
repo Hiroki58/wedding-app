@@ -1,7 +1,6 @@
 import { Button, Container, Stack, TextField } from '@mui/material'
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
@@ -12,9 +11,20 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import AlertDialog from '../assets/dialog';
 import { useState } from "react";
+import * as Yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 export default function Question() {
-  const { register, handleSubmit } = useForm();
+  const validationSchema = Yup.object().shape({
+    email: Yup.string().required("email Address is required"),
+    firstname: Yup.string().required("First name is required"),
+    lastname: Yup.string().required("Last name is required"),
+    allergies: Yup.string().required("Please write 'No' if you don't have allergies."),
+    plusone: Yup.string().required("Check is required"),
+  });
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    resolver: yupResolver(validationSchema)
+  });
   const [result, setResult] = useState(false);
   const [firstName, setFirstName] = useState("");
 
@@ -26,7 +36,7 @@ export default function Question() {
   const onError = (errors, e) => console.log(errors, e)
 
   return (
-    <Container maxWidth="sm" sx={{ pt: 5}}>
+    <Container maxWidth="sm" sx={{ pt: 5, backgroundColor: "white" }}>
       {result ? <AlertDialog title={"Thank you " + firstName + " for answering our questions."} content={<Button color='secondary' href="/">
         Back to main page
       </Button>} /> : null}
@@ -34,23 +44,37 @@ export default function Question() {
       <Stack spacing={3}>
         <TextField
           required
+          name='email'
           label="email address"
           type="email"
+          error={!!errors.email}
+          helperText={errors.email ? errors.email.message : ""}
+
           {...register('email')}
         />
         <TextField
           required
+          name="firstname"
+          error={!!errors.firstname}
           label="First name"
+          helperText={errors.firstname ? errors.firstname.message : ""}
           {...register('firstName')}
         />
         <TextField
           required
+          name='lastname'
           label="Last name"
+          error={!!errors.lastname}
+          helperText={errors.lastname ? errors.lastname.message : ""}
           {...register('lastName')}
         />
         <TextField
+          name='allergies'
           required
           label="Do you have allergies?"
+          error={!!errors.allergies}
+          helperText={errors.allergies ? errors.allergies.message : ""}
+
           {...register('allergies')}
         />
         <FormControl fullWidth>
@@ -75,17 +99,6 @@ export default function Question() {
             <MenuItem value={999}>The whole school</MenuItem>
           </Select>
         </FormControl>
-        {/* <FormControlLabel
-          control={<Checkbox {...register("plusOne")} />}
-          sx={{
-            color: pink[800],
-            '&.Mui-checked': {
-              color: pink[600],
-            },
-          }}
-          label="Plus One"
-          labelPlacement="end"
-        /> */}
         <FormControl>
           <FormLabel id="radio-buttons-group-label">Plus One</FormLabel>
           <RadioGroup
@@ -93,8 +106,12 @@ export default function Question() {
             aria-labelledby="radio-buttons-group-label"
             name="row-radio-buttons-group"
           >
-            <FormControlLabel value="yes" control={<Radio {...register("plusOne")} />} label="yes" />
-            <FormControlLabel value="no" control={<Radio {...register("plusOne")} />} label="no" />
+            <FormControlLabel value="yes" control={<Radio {...register("plusOne")} />} label={<span style={{ color: "grey" }}>
+              Yes
+            </span>} />
+            <FormControlLabel value="no" control={<Radio {...register("plusOne")} />} label={<span style={{ color: "grey" }}>
+              No
+            </span>} />
           </RadioGroup>
         </FormControl>
         <FormControl>
@@ -104,15 +121,21 @@ export default function Question() {
             aria-labelledby="radio-buttons-group-label"
             name="row-radio-buttons-group"
           >
-            <FormControlLabel value="yes" control={<Radio {...register("brunch")} />} label="yes" />
-            <FormControlLabel value="no" control={<Radio {...register("brunch")} />} label="no" />
+            <FormControlLabel value="yes" control={<Radio {...register("brunch")} />} label={<span style={{ color: "grey" }}>
+              Yes
+            </span>} />
+            <FormControlLabel value="no" control={<Radio {...register("brunch")} />} label={<span style={{ color: "grey" }}>
+              No
+            </span>} />
           </RadioGroup>
         </FormControl>
         <Button
           color="primary"
-          variant="contained"
+          variant="outlined"
           size="small"
+          type="submit"
           onClick={handleSubmit(onSubmit, onError)}
+          sx={{ backgroundColor: 'white' }}
         >
           submit
         </Button>

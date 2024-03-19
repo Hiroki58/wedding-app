@@ -51,6 +51,7 @@ export default function menuBar() {
             <Link to={`about`}><MenuItem onClick={handleClose}>About us</MenuItem></Link>
             <Link to={`playlist`}><MenuItem onClick={handleClose}>Music playlist</MenuItem></Link>
             <Link to={`photo`}><MenuItem onClick={handleClose}>Photo contest</MenuItem></Link>
+            <Link to={`https://photos.app.goo.gl/tUgzpSQwNqGMvhC5A`} rel="noopener" target="_blank"><MenuItem onClick={handleClose}>Photo Album</MenuItem></Link>
           </Menu>
         </Toolbar>
       </AppBar>

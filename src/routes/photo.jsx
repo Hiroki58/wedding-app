@@ -4,6 +4,7 @@ import PhotoBox from "../assets/photo-box"
 import ListSubheader from '@mui/material/ListSubheader';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
+import AlertDialog from '../assets/dialog';
 
 
 
@@ -71,9 +72,10 @@ export default function Photo() {
     return (
         <>
             <Container sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', flexWrap: 'wrap', marginTop: "5px", marginBottom: "5px" }}>
+                <AlertDialog title="Photo Contest!" content="Add your best photo for the contest to win the prize!" />
                 <ImageList sx={{ width: "100vw", height: "70vh" }}>
                     <ImageListItem key="Subheader" cols={2}>
-                        <ListSubheader component="div">Photo</ListSubheader>
+                        <ListSubheader component="div">Photo Contest</ListSubheader>
                     </ImageListItem>
                     {itemData.map((item) => (
                         <PhotoBox itemData={item} />
