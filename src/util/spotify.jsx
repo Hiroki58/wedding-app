@@ -1,5 +1,5 @@
 const clientId = '471f258f4db64f74ab912a269e2350d8'; // Insert client ID here.
-const redirectUri = 'http://localhost:5173/playlist'; // Have to add this to your accepted Spotify redirect URIs on the Spotify API.
+const redirectUri = 'https://wedding-app-7a2b3.web.app/playlist'; // Have to add this to your accepted Spotify redirect URIs on the Spotify API.
 const playlistId = '26wd56yxtnTqiTpA7jJo7Q';
 let accessToken;
 
@@ -75,14 +75,14 @@ const Spotify = {
     const headers = { Authorization: `Bearer ${accessToken}` };
     let userId;
 
-    return fetch('https://api.spotify.com/v1/me', {headers: headers}
+    return fetch('https://api.spotify.com/v1/me', { headers: headers }
     ).then(response => response.json()
     ).then(jsonResponse => {
       userId = jsonResponse.id;
       return fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
         headers: headers,
         method: 'POST',
-        body: JSON.stringify({uris: [trackUris], position: 0})
+        body: JSON.stringify({ uris: [trackUris], position: 0 })
       });
     });
   }
