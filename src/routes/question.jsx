@@ -36,7 +36,7 @@ export default function Question() {
   const onError = (errors, e) => console.log(errors, e)
 
   return (
-    <Container maxWidth="sm" sx={{ backgroundColor: "white" }}>
+    <Container maxWidth="sm" sx={{ pt: "10px", backgroundColor: "white" }}>
       {result ? <AlertDialog title={"Thank you " + firstName + " for answering our questions."} content={<Button color='secondary' href="/">
         Back to main page
       </Button>} /> : null}
@@ -96,7 +96,6 @@ export default function Question() {
             <MenuItem value={7}>7</MenuItem>
             <MenuItem value={8}>8</MenuItem>
             <MenuItem value={9}>10</MenuItem>
-            <MenuItem value={999}>The whole school</MenuItem>
           </Select>
         </FormControl>
         <FormControl>
